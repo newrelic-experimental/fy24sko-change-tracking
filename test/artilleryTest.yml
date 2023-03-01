@@ -1,0 +1,103 @@
+config:
+  target: "http://skogo1:8000"
+  phases:
+    - duration: 3600
+      arrivalRate: 1
+  loop: true
+  random: true
+scenarios:
+  - name: "index"
+    flow:
+      - log: "New virtual user running against: '/', index"
+      - get:
+          url: "/"
+  - name: "versionHandler"
+    flow:
+      - log: "New virtual user running against: '/version', versionHandler"
+      - get:
+          url: "/version"
+  - name: "noticeError"
+    flow:
+      - log: "New virtual user running against: '/notice_error', noticeError"
+      - get:
+          url: "/notice_error"
+  - name: "noticeExpectedError"
+    flow:
+      - log: "New virtual user running against: '/notice_expected_error', noticeExpectedError"
+      - get:
+          url: "/notice_expected_error"
+  - name: "noticeErrorWithAttributes"
+    flow:
+      - log: "New virtual user running against: '/notice_error_with_attributes', noticeErrorWithAttributes"
+      - get:
+          url: "/notice_error_with_attributes"
+  - name: "customEvent"
+    flow:
+      - log: "New virtual user running against: '/custom_event', customEvent"
+      - get:
+          url: "/custom_event"
+  - name: "setName"
+    flow:
+      - log: "New virtual user running against: '/set_name', setName"
+      - get:
+          url: "/set_name"
+  - name: "addAttribute"
+    flow:
+      - log: "New virtual user running against: '/add_attribute', addAttribute"
+      - get:
+          url: "/add_attribute"
+  - name: "addSpanAttribute"
+    flow:
+      - log: "New virtual user running against: '/add_span_attribute', addSpanAttribute"
+      - get:
+          url: "/add_span_attribute"
+  - name: "ignore"
+    flow:
+      - log: "New virtual user running against: '/ignore', ignore"
+      - get:
+          url: "/ignore"
+  - name: "segments"
+    flow:
+      - log: "New virtual user running against: '/segments', segments"
+      - get:
+          url: "/segments"
+  - name: "mysql"
+    flow:
+      - log: "New virtual user running against: '/mysql', mysql"
+      - get:
+          url: "/mysql"
+  - name: "external"
+    flow:
+      - log: "New virtual user running against: '/external', external"
+      - get:
+          url: "/external"
+  - name: "roundtripper"
+    flow:
+      - log: "New virtual user running against: '/roundtripper', roundtripper"
+      - get:
+          url: "/roundtripper"
+  - name: "customMetric"
+    flow:
+      - log: "New virtual user running against: '/custommetric', customMetric"
+      - get:
+          url: "/custommetric"
+  - name: "browser"
+    flow:
+      - log: "New virtual user running against: '/browser', browser"
+      - get:
+          url: "/browser"
+  - name: "async"
+    flow:
+      - log: "New virtual user running against: '/async', async"
+      - get:
+          url: "/async"
+  - name: "message"
+    flow:
+      - log: "New virtual user running against: '/message', message"
+      - get:
+          url: "/message"
+  - name: "logTxnMessage"
+    flow:
+      - log: "New virtual user running against: '/log', logTxnMessage"
+      - get:
+          url: "/log"

@@ -1,0 +1,18 @@
+name: Change Tracking Marker
+on:
+  workflow_dispatch:
+
+jobs:
+  newrelic:
+    runs-on: ubuntu-latest
+    name: New Relic
+    steps:
+      - name: Create marker
+        uses: newrelic/deployment-marker-action@v2.1.0
+        with:
+          apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
+          guid: ${{ secrets.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
+          version: "0.0.1"
+          user: "${{ github.actor }}"
+          description: "Automated Marker via Github Actions"
+          deploymentType: "OTHER"

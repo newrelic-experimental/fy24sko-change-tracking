@@ -4,6 +4,8 @@
 
 >[Brief description - what is the project and value does it provide? How often should users expect to get releases? How is versioning set up? Where does this project want to go?]
 
+*Based on the [sample application](https://github.com/newrelic/go-agent/blob/master/v3/examples/server/main.go) in the New Relic Go Agent repository*
+
 ## Installation
 
 > [Include a step-by-step procedure on how to get your code installed. Be sure to include any third-party dependencies that need to be installed separately]
