@@ -22,6 +22,10 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
 
       - name: Run Docker Compose with a 60m timeout
+        env:
+          NR_LICENSE_KEY: ${{ secrets.NR_LICENSE_KEY }}
+          ## TO-DO ## Update this app name for "prod"
+          NR_APP_NAME: "go-sample"
         run: |
           docker-compose -f compose.yml up -d
           sleep 10 # wait for containers to start up
