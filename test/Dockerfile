@@ -1,6 +1,9 @@
 # Base image
 FROM node:14-alpine
 
+# Install Python3 and pip
+RUN apk update && apk add --no-cache python3 py-pip
+
 # Set working directory
 WORKDIR /app
 
