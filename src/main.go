@@ -266,9 +266,6 @@ func logTxnMessage(w http.ResponseWriter, r *http.Request) {
 func main() {
 	app, err := newrelic.NewApplication(
 		newrelic.ConfigFromEnvironment(),
-		//newrelic.ConfigAppName("go-sample"),
-		//newrelic.ConfigLicense("9251f1057fbf67695ca7aa82bccbe259e24cNRAL"),
-		//newrelic.ConfigAppLogForwardingEnabled(true),
 	)
 	if err != nil {
 		fmt.Println(err)
