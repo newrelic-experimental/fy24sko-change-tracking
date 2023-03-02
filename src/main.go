@@ -91,7 +91,7 @@ func addSpanAttribute(w http.ResponseWriter, r *http.Request) {
 }
 
 func ignore(w http.ResponseWriter, r *http.Request) {
-	if coinFlip := (0 == rand.Intn(2)); coinFlip {
+	if coinFlip := (rand.Intn(2) == 0); coinFlip {
 		txn := newrelic.FromContext(r.Context())
 		txn.Ignore()
 		io.WriteString(w, "ignoring the transaction")
