@@ -33,4 +33,4 @@ jobs:
         run: |
           docker-compose -f compose.yml up -d
           sleep 10 # wait for containers to start up
-          docker-compose -f compose.yml down --timeout 3600 # stop containers after 60 minutes
+        #docker-compose -f compose.yml down --timeout 3600 # stop containers after 60 minutes
