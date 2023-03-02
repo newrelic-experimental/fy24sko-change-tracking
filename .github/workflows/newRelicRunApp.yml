@@ -28,8 +28,7 @@ jobs:
       - name: Run Docker Compose with a 60m timer
         env:
           NR_LICENSE_KEY: ${{ secrets.NR_LICENSE_KEY }}
-          ## TO-DO ## Update this app name for "prod"
-          NR_APP_NAME: "go-sample"
+          NR_APP_NAME: "fy24-sko-change-tracking"
         run: |
           docker-compose -f compose.yml up -d
           sleep 1h # Leave these containers running for 1 hour to give time to finish the lab
