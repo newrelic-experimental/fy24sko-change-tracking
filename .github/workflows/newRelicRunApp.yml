@@ -35,4 +35,4 @@ jobs:
       
       - name: Stop containers
         run: |
-          docker-compose -f compose.yml down
+          docker-compose -f compose.yml down || true
