@@ -78,7 +78,7 @@ Next, you will collect your license and user API keys from New Relic, create sec
 
 >*In this image, we've focused on the New Relic License Key, but you'll need to create a second secret for your User API Key; following the same procedure.*
 
-5. When you're finished, you should have the API key and License key secrets shown here. *(We'll make the Entity GUID secret in the next lab section)*
+5. When you're finished, you should have the API key and License key secrets shown here.
 
 <p align="center">
   <img src="./images/action-secrets_3.jpg" alt="GitHub secret results">
@@ -141,17 +141,17 @@ jobs:
 
 Breaking this file down into it's components, you can see the following workflow:
 
-|          Attribute         |                                                                                                                      Notes                                                                                                                      |
-|:--------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| name                       | The name of this workflow, seen in the `Actions` page                                                                                                                                                                                           |
-| on                         | The GitHub event that triggers this workflow. In this case we're using [workflow_dispatch](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch) in our lab since we only want manual executions. |
-| jobs.<job_id>              | `build` is the job_id for this segment of the workflow. You can have multiple jobs stacked together depending on your needs.                                                                                                                    |
-| jobs. <job_id>.runs-on     | This defines the type of machine (aka 'runner') to run the job on. GitHub hosts Windows Server, Ubuntu, and MacOS runners for public use; or you can provide your own image.                                                                    |
-| jobs. <job_id>.steps       | A job is composed of one or more "steps"; which can run commands, setup other actions, and do multiple other things. GitHub has built-in steps for set up and tear down of jobs.                                                                |
-| jobs. <job_id> .steps.name | This is the name of the step that will be displayed on the job details page in the GitHub UI.                                                                                                                                                   |
-| jobs. <job_id> .steps.uses | This is where you can select an action to run as part of your job. In our first step you can see we use the [checkout](https://github.com/actions/checkout) action to checkout our repository that we want to work in.                          |
-| jobs. <job_id> .steps.run  | This option allows you to run command-line programs in the operating system's shell.                                                                                                                                                            |
-| jobs. <job_id> .steps.env  | This option sets variables for steps to use in the runner environment, like the `NR_LICENSE_KEY` GitHub secret we created earlier. At this level the variables are only "alive" during the specified step but you can also set variables at the job and workflow levels for persistence.                    |
+| <div style="width:150px">Attribute</div> | Notes |
+|-----------|-----------|
+| name | The name of this workflow, seen in the `Actions` page |
+| on | The GitHub event that triggers this workflow. In this case we're using [workflow_dispatch](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch) in our lab since we only want manual executions. |
+| jobs.<job_id> | `build` is the job_id for this segment of the workflow. You can have multiple jobs stacked together depending on your needs. |
+| jobs. <job_id>.runs-on | This defines the type of machine (aka 'runner') to run the job on. GitHub hosts Windows Server, Ubuntu, and MacOS runners for public use; or you can provide your own image. |
+| jobs. <job_id> .env | This option sets variables for steps to use in the runner environment, like the `NR_LICENSE_KEY` GitHub secret we created earlier. At this level the variables are available for every step in this job, but you can also set persistence at the entire workflow and individual step levels. |
+| jobs. <job_id>.steps | A job is composed of one or more "steps"; which can run commands, setup other actions, and do multiple other things. GitHub has built-in steps for set up and tear down of jobs. |
+| jobs. <job_id> .steps.name | This is the name of the step that will be displayed on the job details page in the GitHub UI. |
+| jobs. <job_id> .steps.uses | This is where you can select an action to run as part of your job. In our first step you can see we use the [checkout](https://github.com/actions/checkout) action to checkout our repository that we want to work in. |
+| jobs. <job_id> .steps.run | This option allows you to run command-line programs in the operating system's shell. |
 
 >*To learn more about the options available in the GitHub Action syntax, check out [the documentation](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)*
 
