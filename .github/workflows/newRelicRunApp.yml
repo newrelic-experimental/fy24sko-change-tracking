@@ -7,6 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      NR_LICENSE_KEY: ${{ secrets.NR_LICENSE_KEY }}
+      NR_APP_NAME: "fy24-sko-change-tracking"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3.3.0
@@ -26,9 +30,6 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
 
       - name: Run Docker Compose with a 60m timer
-        env:
-          NR_LICENSE_KEY: ${{ secrets.NR_LICENSE_KEY }}
-          NR_APP_NAME: "fy24-sko-change-tracking"
         run: |
           docker-compose -f compose.yml up -d
           sleep 1h # Leave these containers running for 1 hour to give time to finish the lab
