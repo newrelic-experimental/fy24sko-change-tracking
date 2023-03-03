@@ -39,7 +39,7 @@ Clicking on the above link will take you to the IDE, where you can select the AP
 You can verify this by navigating to your APM service in New Relic, and investigating the marker there, noting the new marker with version `0.0.2`
 
 <p align="center">
-  <img src="./images" alt="New Relic APM interface">
+  <img src="./images/nerdgraph_2.jpg" alt="New Relic APM interface">
 </p>
 
 ## Next steps

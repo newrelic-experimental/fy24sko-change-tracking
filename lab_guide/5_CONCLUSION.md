@@ -15,4 +15,8 @@ Consider other ways to visualize the data.
 FROM Deployment SELECT *
 ```
 
+<p align="center">
+  <img src="./images/conclusion_1.jpg" alt="New Relic APM interface">
+</p>
+
 Continue your journey with Change Tracking! For a more advanced approach, take a look at our [Jenkins plugin](https://docs.newrelic.com/docs/change-tracking/ci-cd/change-tracking-jenkins/) and stay tuned for more integrations with your favorite CI/CD tools, as well as updates to the Change Tracking API in the near future!

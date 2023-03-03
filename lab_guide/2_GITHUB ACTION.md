@@ -108,6 +108,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      NR_LICENSE_KEY: ${{ secrets.NR_LICENSE_KEY }}
+      NR_APP_NAME: "fy24-sko-change-tracking"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3.3.0
@@ -127,9 +131,6 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
 
       - name: Run Docker Compose with a 60m timer
-        env:
-          NR_LICENSE_KEY: ${{ secrets.NR_LICENSE_KEY }}
-          NR_APP_NAME: "fy24-sko-change-tracking"
         run: |
           docker-compose -f compose.yml up -d
           sleep 1h # Leave these containers running for 1 hour to give time to finish the lab
@@ -144,7 +145,7 @@ Breaking this file down into it's components, you can see the following workflow
 | <div style="width:150px">Attribute</div> | Notes |
 |-----------|-----------|
 | name | The name of this workflow, seen in the `Actions` page |
-| on | The GitHub event that triggers this workflow. In this case we're using [workflow_dispatch](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch) in our lab since we only want manual executions. |
+| on | The GitHub event that triggers this workflow. In this case we're using [workflow_dispatch](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch) in our lab since we only want manual executions. It's much more common in production to trigger your workflow on Pull Requests or Releases.|
 | jobs.<job_id> | `build` is the job_id for this segment of the workflow. You can have multiple jobs stacked together depending on your needs. |
 | jobs. <job_id>.runs-on | This defines the type of machine (aka 'runner') to run the job on. GitHub hosts Windows Server, Ubuntu, and MacOS runners for public use; or you can provide your own image. |
 | jobs. <job_id> .env | This option sets variables for steps to use in the runner environment, like the `NR_LICENSE_KEY` GitHub secret we created earlier. At this level the variables are available for every step in this job, but you can also set persistence at the entire workflow and individual step levels. |
@@ -188,24 +189,22 @@ Creating fy24sko-change-tracking_load_1 ... done
 
 7. After about 2-5 minutes, you should be able to see your new application, with transactions and load, in your New Relic account.
 
-<p align="center">
-  <img src="./images" alt="New Relic APM interface">
-</p>
-
 ### Creating a Change Tracking Marker with a GitHub Action
 
 Now that we have an application service entity, let's see how easy it is to create markers for it. The first thing we need to do is gather the `entity.guid` for our sample application. It's one of the required fields to create any markers in the new API.
 
 1. In the New Relic UI, navigate to your APM Service entity overview page, then click the small 'tags' icon under the title to see the details slideout on the right side. From there you can copy the `entity.guid` value.
 
+
+
 <p align="center">
-  <img src="./images/ct-action_1.jpg" alt="GitHub Actions UI">
+  <img src="./images/run-app_06.jpg" alt="New Relic APM interface">
 </p>
 
 2. Next you will need to create a GitHub Secret, exactly how you did for your API and license keys. This one will be named `NEW_RELIC_DEPLOYMENT_ENTITY_GUID`. As a reminder, when you're done you should have a list of secrets like this:
 
 <p align="center">
-  <img src="./images/ct-action_2.jpg" alt="GitHub Action Run Workflow">
+  <img src="./images/action-secrets_4.jpg" alt="GitHub Action Run Workflow">
 </p>
 
 3. Navigating back to our `Actions` page, we can select the `Change Tracking Marker` and click the link to view the source code for this action.
@@ -265,10 +264,10 @@ jobs:
 
 >*GitHub Secrets will always be obfuscated in this log*
 
-8. Giving the APM interface a few minutes to refresh, we can see our marker on our application!
+8. After giving the APM interface a few minutes to refresh, we can see the marker for version `0.0.1` on our application:
 
 <p align="center">
-  <img src="./images" alt="New Relic APM interface">
+  <img src="./images/ct-action_6.jpg" alt="New Relic APM interface">
 </p>
 
 ## Next steps
