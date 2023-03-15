@@ -26,7 +26,7 @@ In this example, you'll need to replace `$ENTITY_GUID` and `$USER_NAME` with the
 
 ## Using the GraphiQL interface to submit your marker
 
-**NOTE: THIS DOES NOT WORK FOR V2 ACCOUNTS CURRENTLY. IF YOU ARE USING A V2 ACCOUNT, PLEASE SEE THE CURL METHOD BELOW**
+**NOTE: THERE IS A CURRENT BUG WHEN SWITCHING BETWEEN THE PRODUCT AND CUSTOMER VIEWS FROM V1 > V2 USER ACCOUNTS. IF YOU DO NOT HAVE THE OPTION TO SELECT YOUR API KEY IN THE GRAPHIQL UI YOU CAN EITHER TRY AN INCOGNITO WINDOW OR USE THE CURL METHOD BELOW.**
 
 At New Relic, we present a public-facing, in-browser experience for our GraphQL API in the form of [GraphiQL](https://github.com/graphql/graphiql), which is the GraphQL IDE created by engineers at Facebook in 2015. One of the nice things about this IDE is that you can directly link queries and mutations to any user and the IDE will maintain your syntax, no matter what account-level permissions the recipient may have. Meaning that you can share things with folks from different organizations with easy links like this:
 
