@@ -26,6 +26,8 @@ In this example, you'll need to replace `$ENTITY_GUID` and `$USER_NAME` with the
 
 ## Using the GraphiQL interface to submit your marker
 
+**NOTE: THIS DOES NOT WORK FOR V2 ACCOUNTS CURRENTLY. IF YOU ARE USING A V2 ACCOUNT, PLEASE SEE THE CURL METHOD BELOW**
+
 At New Relic, we present a public-facing, in-browser experience for our GraphQL API in the form of [GraphiQL](https://github.com/graphql/graphiql), which is the GraphQL IDE created by engineers at Facebook in 2015. One of the nice things about this IDE is that you can directly link queries and mutations to any user and the IDE will maintain your syntax, no matter what account-level permissions the recipient may have. Meaning that you can share things with folks from different organizations with easy links like this:
 
  * [NerdGraph - GraphiQL Link for Change Tracking Mutation](https://api.newrelic.com/graphiql?#query=mutation%20%7B%0A%20%20changeTrackingCreateDeployment%28deployment%3A%20%7BentityGuid%3A%20%22%24ENTITY_GUID%22%2C%20user%3A%20%22%24USER_NAME%22%2C%20version%3A%20%220.0.2%22%2C%20deploymentType%3A%20OTHER%2C%20description%3A%20%22Marker%20created%20from%20NerdGraph%22%7D%29%20%7B%0A%20%20%20%20deploymentId%0A%20%20%7D%0A%7D%0A)
@@ -36,7 +38,21 @@ Clicking on the above link will take you to the IDE, where you can select the AP
   <img src="./images/nerdgraph_1.jpg" alt="GraphiQL UI">
 </p>
 
-You can verify this by navigating to your APM service in New Relic, and investigating the marker there, noting the new marker with version `0.0.2`
+## Using cURL to submit your marker directly to the NerdGraph API
+
+Alternatively, you can submit an HTTP POST directly to the NerdGraph API endpoint. This is necessary if you are using a V2 user account that doesn't have full access to the GraphiQL explorer UI right now.
+
+Here is an example command for you to run in your terminal; you will need to replace the `$API_KEY`, `$ENTITY_GUID`, and `$USER_NAME` fields with content relative to you:
+
+```
+curl https://api.newrelic.com/graphql \
+  -H 'Content-Type: application/json' \
+  -H 'API-Key: $API_KEY' \
+  --data-binary '{"query":"mutation {\n  changeTrackingCreateDeployment(deployment: {entityGuid: \"$ENTITY_GUID\", user: \"$USER_NAME\", version: \"0.0.2\", deploymentType: OTHER, description: \"Marker created from NerdGraph\"}) {\n    deploymentId\n  }\n}\n", "variables":""}'
+```
+
+
+After a few minutes, you can verify success by navigating to your APM service in New Relic, and investigating the marker there, noting the new marker with version `0.0.2`
 
 <p align="center">
   <img src="./images/nerdgraph_2.jpg" alt="New Relic APM interface">
