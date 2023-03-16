@@ -8,7 +8,7 @@ jobs:
     name: New Relic
     steps:
       - name: Create marker
-        uses: newrelic/deployment-marker-action@v2.1.0
+        uses: newrelic/deployment-marker-action@v2.3.0
         with:
           apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
           guid: ${{ secrets.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
