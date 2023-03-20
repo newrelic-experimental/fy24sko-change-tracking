@@ -49,8 +49,8 @@ One of the benefits of using the New Relic CLI is how it naturally interacts wit
 
 ```shell
 newrelic apm application search \
-  --name "$APP_NAME" \
-  --profile "$PROFILE_NAME" \
+  --name $APP_NAME \
+  --profile $PROFILE_NAME \
   | jq '.[].guid'
 ```
 
@@ -66,12 +66,12 @@ Finally, the ease of creating a marker with the New Relic CLI is in parity with 
 
 ```shell
 newrelic entity deployment create \
-  --guid '$ENTITY_GUID' \
+  --guid $ENTITY_GUID \
   --version '0.0.3' \
   --deploymentType 'OTHER' \
   --description 'Marker from New Relic CLI' \
-  --user '$USER_NAME' \
-  --profile '$PROFILE_NAME'
+  --user $USER_NAME \
+  --profile $PROFILE_NAME
 ```
 
 >*To see all the available options for this command, run `newrelic entity deployment create --help*
