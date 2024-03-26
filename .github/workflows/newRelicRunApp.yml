@@ -9,7 +9,7 @@ jobs:
 
     env:
       NR_LICENSE_KEY: ${{ secrets.NR_LICENSE_KEY }}
-      NR_APP_NAME: "fy24sko-change-tracking"
+      NR_APP_NAME: "demo-change-tracking"
 
     steps:
       - name: Checkout code
