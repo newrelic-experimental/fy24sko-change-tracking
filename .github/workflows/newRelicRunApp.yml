@@ -13,16 +13,25 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v4.1.1
 
-      - name: Update packages
+      - name: Update packages and resolve dependencies
         run: |
           sudo apt-get update
+          sudo apt-get -y --no-install-recommends install apt-transport-https ca-certificates curl software-properties-common
 
-      - name: Remove conflicts and Install Docker
+      - name: Add Docker GPG key
         run: |
-          sudo apt-get remove moby-containerd moby-runc
-          sudo apt-get install -y docker.io
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+      - name: Add Docker repository
+        run: |
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 
       - name: Install Docker Compose
         run: |
